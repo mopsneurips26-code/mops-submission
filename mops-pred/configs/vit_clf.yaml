@@ -1,0 +1,13 @@
+dataset:
+  name: object_centric
+  data_dir: data/mops_data/mops-object
+  num_classes: 46
+
+model:
+  name: object_clf
+  backbone: vit
+  num_classes: 46
+
+training:
+  batch_size: 32
+  num_epochs: 120

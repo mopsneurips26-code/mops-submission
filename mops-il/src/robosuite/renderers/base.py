@@ -1,0 +1,63 @@
+"""This file contains the base renderer class for Mujoco environments."""
+
+import abc
+from typing import Never
+
+
+def load_renderer_config(renderer):
+    """Loads the config of the specified renderer.
+    Modify the dictionary returned by this function
+    according to reuirements.
+
+    Args:
+        renderer (str): Name of the renderer to use.
+
+    Returns:
+        dict: renderer default config.
+
+    """
+    return {}
+
+
+class Renderer:
+    """Base class for all robosuite renderers
+    Defines basic interface for all renderers to adhere to.
+    """
+
+    def __init__(self, env, renderer_type="mujoco") -> None:
+        self.env = env
+        self.renderer_type = renderer_type
+
+    def __str__(self) -> str:
+        """Prints the renderer type in a formatted way.
+
+        Returns:
+            str: string representing the renderer
+
+        """
+        return f'<RendererObject renderer_type="{self.renderer_type}">'
+
+    @abc.abstractmethod
+    def render(self, **kwargs) -> Never:
+        """Renders the current state with the specified renderer."""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def close(self) -> Never:
+        """Closes the renderer objects."""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def reset(self) -> Never:
+        """Reset the renderer with initial states for environment."""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_pixel_obs(self) -> Never:
+        """Get the pixel observations from the given renderer.
+
+        Returns:
+            numpyarr: numpy array representing pixels of renderer
+
+        """
+        raise NotImplementedError

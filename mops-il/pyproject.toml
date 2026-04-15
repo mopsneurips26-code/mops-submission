@@ -1,0 +1,76 @@
+[project]
+name = "mops-il"
+version = "0.1.0"
+authors = [
+    {name = "MOPS Authors", email="mops@authors.com"}
+]
+description = "MOPS-IL: Affordance-guided imitation learning for robotic manipulation"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "accelerate>=1.12.0",
+    "av>=16.0.1",
+    "datasets>=4.4.1",
+    "diffusers>=0.36.0",
+    "draccus>=0.11.5",
+    "einops>=0.8.1",
+    "h5py>=3.15.1",
+    "imageio>=2.37.2",
+    "loguru>=0.7.3",
+    "lxml>=6.0.2",
+    "matplotlib>=3.10.8",
+    "mink>=0.0.13",
+    "mujoco==3.2.6",
+    "numba>=0.62.1",
+    "numpy>=2.3.4",
+    "opencv-python>=4.11.0.86",
+    "pillow>=12.0.0",
+    "polars>=1.35.2",
+    "pynput>=1.8.1",
+    "pyyaml>=6.0.3",
+    "sentencepiece>=0.2.1",
+    "setuptools>=80.9.0",
+    "termcolor>=3.2.0",
+    "tiktoken>=0.12.0",
+    "torch>=2.9.1",
+    "torchcodec",
+    "torchvision>=0.24.1",
+    "tqdm>=4.67.1",
+    "transformers>=4.57.3",
+    "wandb>=0.23.1",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.4",
+]
+
+[tool.ruff]
+# Same as Black's default
+line-length = 88
+fix = true
+unsafe-fixes = true
+
+[tool.ruff.lint]
+# A comprehensive, modern ruleset.
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # Pyflakes (logical errors)
+    "I",  # isort (import sorting)
+    "D",  # pydocstyle (docstring conventions)
+    "B",  # flake8-bugbear (common bugs)
+    "C4", # flake8-comprehensions (better comprehensions)
+    "UP", # pyupgrade (modernize code)
+    "SIM",# flake8-simplify (simplify code)
+    "PTH",# flake8-use-pathlib (use pathlib)
+    "ANN",# flake8-annotations (type hints)
+]
+
+[tool.ruff.lint.pydocstyle]
+# Use "google" or "numpy" style docstrings
+convention = "google"
+
+[build-system]
+requires = ["uv_build>=0.9.7,<0.10.0"]
+build-backend = "uv_build"

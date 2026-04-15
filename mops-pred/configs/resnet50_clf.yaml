@@ -1,0 +1,9 @@
+dataset:
+  name: object_centric
+  data_dir: data/mops_data/mops-object
+  num_classes: 46
+
+model:
+  name: object_clf
+  backbone: resnet50
+  num_classes: 46

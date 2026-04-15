@@ -1,0 +1,35 @@
+[build-system]
+# XXX: If your project needs other packages to build properly, add them to this list.
+requires = ["setuptools >= 64"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "mops-pred"
+version = "1.0.0"
+authors = [
+    {name = "MOPS Authors", email="mops@authors.com"}
+]
+readme = "README.md"
+dependencies = [
+    "datasets>=4.8.4",
+    "draccus>=0.11.5",
+    "h5py>=3.15.1",
+    "lightning>=2.6.0",
+    "matplotlib>=3.10.7",
+    "pycocotools>=2.0.11",
+    "torch>=2.9.1",
+    "torchaudio>=2.9.1",
+    "torchvision>=0.24.1",
+    "transformers>=4.57.3",
+    "wandb>=0.23.1",
+    "webdataset>=0.2.100",
+]
+
+[tool.setuptools.packages.find]
+include = ["mops_pred*"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.8",
+]

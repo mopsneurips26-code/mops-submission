@@ -1,0 +1,32 @@
+[build-system]
+# XXX: If your project needs other packages to build properly, add them to this list.
+requires = ["setuptools >= 64"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "mops-data"
+version = "0.1.0"
+authors = [
+    {name = "MOPS Authors", email="mops@authors.com"}
+]
+readme = "README.md"
+
+dependencies = [
+    "datasets>=4.8.4",
+    "mani-skill>=3.0.0b22",
+    "pandas",
+    "pycocotools>=2.0.11",
+    "scikit-learn>=1.7.2",
+    "torch>=2.9.1",
+    "torchaudio>=2.9.1",
+    "torchvision>=0.24.1",
+]
+
+[tool.setuptools.package-data]
+"mops" = ["*.csv", "*.json", "*.urdf"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.8",
+]

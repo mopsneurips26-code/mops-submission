@@ -1,0 +1,53 @@
+.vscode/*
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+
+# mac
+.DS_Store
+__MACOSX
+
+
+# robocasa assets
+*.jpg
+macros_private.py
+src/robocasa/models/assets/demonstrations_private
+
+# model zoo
+v-hacd
+src/robocasa/models/assets/model_zoo_assets
+
+# object assets
+src/robocasa/models/assets/objects/objaverse
+src/robocasa/models/assets/objects/aigen_objs
+# fixture assets
+src/robocasa/models/assets/fixtures/**/*.glb
+src/robocasa/models/assets/fixtures/**/*.obj
+src/robocasa/models/assets/fixtures/**/*.mtl
+src/robocasa/models/assets/fixtures/**/*.blend
+src/robocasa/models/assets/fixtures/**/*.blend1
+src/robocasa/models/assets/fixtures/**/*.mp4
+src/robocasa/models/assets/fixtures/**/*.png
+src/robocasa/models/assets/fixtures/**/*.jpeg
+# default textures
+src/robocasa/models/assets/textures
+
+# midjourney-generated textures
+src/robocasa/models/assets/generative_textures
+
+data
+data/
+*.png
+outputs/
+wandb/
+MUJOCO_LOG.TXT
+wandb

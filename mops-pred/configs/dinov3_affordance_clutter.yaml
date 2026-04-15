@@ -1,0 +1,22 @@
+wandb:
+  project: mops-pred-2026
+
+dataset:
+  name: clutter
+  data_dir: data/mops_data/mops-clutter-5k
+  num_classes: 56
+  labels: [affordance]
+
+model:
+  name: dinov3_segmentation
+  model_name: facebook/dinov3-vitb16-pretrain-lvd1689m
+  num_classes: 56
+  task: affordance
+  multilabel: true
+  freeze_backbone: true
+  lr: 1e-3
+  hidden_dim: 256
+
+training:
+  batch_size: 16
+  num_epochs: 20

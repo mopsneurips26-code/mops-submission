@@ -1,0 +1,15 @@
+dataset:
+  name: clutter
+  data_dir: data/mops_data/mops-kitchen-100k
+  num_classes: 56
+  labels: [affordance]
+
+model:
+  name: segmentation
+  num_classes: 56
+  task: affordance
+  multilabel: true
+
+training:
+  batch_size: 16
+  num_epochs: 5
