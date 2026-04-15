@@ -1,0 +1,85 @@
+{
+    "@context": {
+        "@language": "en",
+        "@vocab": "https://schema.org/",
+        "arrayShape": "cr:arrayShape",
+        "citeAs": "cr:citeAs",
+        "column": "cr:column",
+        "conformsTo": "dct:conformsTo",
+        "containedIn": "cr:containedIn",
+        "cr": "http://mlcommons.org/croissant/",
+        "rai": "http://mlcommons.org/croissant/RAI/",
+        "data": {
+            "@id": "cr:data",
+            "@type": "@json"
+        },
+        "dataBiases": "cr:dataBiases",
+        "dataCollection": "cr:dataCollection",
+        "dataType": {
+            "@id": "cr:dataType",
+            "@type": "@vocab"
+        },
+        "dct": "http://purl.org/dc/terms/",
+        "extract": "cr:extract",
+        "field": "cr:field",
+        "fileProperty": "cr:fileProperty",
+        "fileObject": "cr:fileObject",
+        "fileSet": "cr:fileSet",
+        "format": "cr:format",
+        "includes": "cr:includes",
+        "isArray": "cr:isArray",
+        "isLiveDataset": "cr:isLiveDataset",
+        "jsonPath": "cr:jsonPath",
+        "key": "cr:key",
+        "md5": "cr:md5",
+        "parentField": "cr:parentField",
+        "path": "cr:path",
+        "personalSensitiveInformation": "cr:personalSensitiveInformation",
+        "recordSet": "cr:recordSet",
+        "references": "cr:references",
+        "regex": "cr:regex",
+        "repeated": "cr:repeated",
+        "replace": "cr:replace",
+        "sc": "https://schema.org/",
+        "separator": "cr:separator",
+        "source": "cr:source",
+        "subField": "cr:subField",
+        "transform": "cr:transform"
+    },
+    "@type": "sc:Dataset",
+    "distribution": [
+        {
+            "@type": "cr:FileObject",
+            "@id": "repo",
+            "name": "repo",
+            "description": "The Hugging Face git repository.",
+            "contentUrl": "https://huggingface.co/datasets/mops-neurips26/mops-kitchen-100k/tree/refs%2Fconvert%2Fparquet",
+            "encodingFormat": "git+https",
+            "sha256": "https://github.com/mlcommons/croissant/issues/80"
+        }
+    ],
+    "recordSet": [],
+    "conformsTo": "http://mlcommons.org/croissant/1.1",
+    "name": "mops-kitchen-100k",
+    "description": "mops-neurips26/mops-kitchen-100k dataset hosted on Hugging Face and contributed by the HF Datasets community",
+    "alternateName": [
+        "mops-neurips26/mops-kitchen-100k"
+    ],
+    "creator": {
+        "@type": "Person",
+        "name": "MOPS Data",
+        "url": "https://huggingface.co/mops-neurips26"
+    },
+    "keywords": [
+        "cc-by-4.0",
+        "🇺🇸egion: US"
+    ],
+    "license": "https://choosealicense.com/licenses/cc-by-4.0/",
+    "url": "https://huggingface.co/datasets/mops-neurips26/mops-kitchen-100k",
+    "rai:dataLimitations": "MOPS is a synthetic training and evaluation dataset for computer vision in robot manipulation. It is designed to support tasks such as image classification, object detection, part, instance, semantic or affordance segmentation. It focuses on common household appliances and objects in kitchen environments and might not be suited for industrial settings.",
+    "rai:dataBiases": "MOPS is sourced entirely from synthetic data, which may introduce biases related to the simulated environments and object appearances. It uses 3D assets from PartNet-Mobility and Robocasa (Objaverse), which may not fully capture the diversity of real-world objects and scenes. Asset normalization and annotation was performed by an LLM, which may introduce additional biases or errors in the dataset which escaped human verification.",
+    "rai:personalSensitiveInformation": "The dataset contains no personal or sensitive information.",
+    "rai:dataUseCases": "MOPS evaluates vision systems for robotic manipulation. It has been tested on segmentation tasks using mIoU as a metric.",
+    "rai:dataSocialImpact": "MOPS enables rigorous evaluation of robotic vision systems, potentially improving safety and efficiency in household environments.",
+    "rai:hasSyntheticData": true
+}

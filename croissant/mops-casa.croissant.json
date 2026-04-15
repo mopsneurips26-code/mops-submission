@@ -1,0 +1,91 @@
+{
+    "@context": {
+        "@language": "en",
+        "@vocab": "https://schema.org/",
+        "arrayShape": "cr:arrayShape",
+        "citeAs": "cr:citeAs",
+        "column": "cr:column",
+        "conformsTo": "dct:conformsTo",
+        "containedIn": "cr:containedIn",
+        "cr": "http://mlcommons.org/croissant/",
+        "rai": "http://mlcommons.org/croissant/RAI/",
+        "data": {
+            "@id": "cr:data",
+            "@type": "@json"
+        },
+        "dataBiases": "cr:dataBiases",
+        "dataCollection": "cr:dataCollection",
+        "dataType": {
+            "@id": "cr:dataType",
+            "@type": "@vocab"
+        },
+        "dct": "http://purl.org/dc/terms/",
+        "extract": "cr:extract",
+        "field": "cr:field",
+        "fileProperty": "cr:fileProperty",
+        "fileObject": "cr:fileObject",
+        "fileSet": "cr:fileSet",
+        "format": "cr:format",
+        "includes": "cr:includes",
+        "isArray": "cr:isArray",
+        "isLiveDataset": "cr:isLiveDataset",
+        "jsonPath": "cr:jsonPath",
+        "key": "cr:key",
+        "md5": "cr:md5",
+        "parentField": "cr:parentField",
+        "path": "cr:path",
+        "personalSensitiveInformation": "cr:personalSensitiveInformation",
+        "recordSet": "cr:recordSet",
+        "references": "cr:references",
+        "regex": "cr:regex",
+        "repeated": "cr:repeated",
+        "replace": "cr:replace",
+        "sc": "https://schema.org/",
+        "separator": "cr:separator",
+        "source": "cr:source",
+        "subField": "cr:subField",
+        "transform": "cr:transform"
+    },
+    "@type": "sc:Dataset",
+    "distribution": [
+        {
+            "@type": "cr:FileObject",
+            "@id": "repo",
+            "name": "repo",
+            "description": "The Hugging Face git repository.",
+            "contentUrl": "https://huggingface.co/datasets/mops-neurips26/mops-casa/tree/refs%2Fconvert%2Fparquet",
+            "encodingFormat": "git+https",
+            "sha256": "https://github.com/mlcommons/croissant/issues/80"
+        }
+    ],
+    "recordSet": [],
+    "conformsTo": "http://mlcommons.org/croissant/1.1",
+    "name": "mops-casa",
+    "description": "\n\t\n\t\t\n\t\tMOPS RoboCasa Demos (MOPS-Casa)\n\t\n\nThis dataset contains lerobot format demonstration for RoboCasa's single task human demonstrations.\nIn addition to each camera view, affordance multilabel ground truth masks are provided.\nThis are efficiently stored bitmasks saved in a lossless video format, which can be decoded using the lerobot fork provided with the MOPS-IL imitation learning codebase.\nWhile playing the video files is possible, please note that the differences in bit masks is not… See the full description on the dataset page: https://huggingface.co/datasets/mops-neurips26/mops-casa.",
+    "alternateName": [
+        "mops-neurips26/mops-casa",
+        "MOPS Robocasa"
+    ],
+    "creator": {
+        "@type": "Person",
+        "name": "MOPS Data",
+        "url": "https://huggingface.co/mops-neurips26"
+    },
+    "keywords": [
+        "robotics",
+        "English",
+        "cc-by-4.0",
+        "1K<n<10K",
+        "Video",
+        "🇺🇸egion: US",
+        "LeRobot"
+    ],
+    "license": "https://choosealicense.com/licenses/cc-by-4.0/",
+    "url": "https://huggingface.co/datasets/mops-neurips26/mops-casa",
+    "rai:dataLimitations": "MOPS is a synthetic training and evaluation dataset for computer vision in robot manipulation. MOPS-Casa applies MOPS affordance annotations to the single-task human demonstrations from RoboCasa v0.2.",
+    "rai:dataBiases": "MOPS-Casa is built on RoboCasa v0.2, which provides human demonstrations for several single-arm single-stage robot manipulation tasks using Franka Panda Arms. MOPS-Casa provides object level affordance annotations sourced from an LLM, which may introduce biases or errors.",
+    "rai:personalSensitiveInformation": "The dataset contains no personal or sensitive information.",
+    "rai:dataUseCases": "MOPS-Casa is designed for training and evaluationg robot manipulation policies, for example via imitation learning. Common evaluation metrics include success rate and task completion time in the RoboCasa v0.2 environments. While not tested by the authors, Reinforcement Learning is a potential alternative approach.",
+    "rai:dataSocialImpact": "MOPS-Casa enables rigorous evaluation of robotic manipulation policies, potentially improving safety and efficiency in household environments.",
+    "rai:hasSyntheticData": true
+}
