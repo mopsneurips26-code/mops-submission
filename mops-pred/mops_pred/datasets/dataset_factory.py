@@ -34,6 +34,12 @@ def _is_parquet(data_dir: str) -> bool:
     return train_dir.is_dir() and any(train_dir.glob("*.parquet"))
 
 
+def _is_hf_repo(path: str) -> bool:
+    """Heuristic: an HF Hub repo ID like ``org/dataset-name``."""
+    parts = path.strip("/").split("/")
+    return len(parts) == 2 and not Path(path).exists()
+
+
 def create_dataloader(
     dataset_cfg: DatasetConfig,
     batch_size: int = 64,
@@ -44,7 +50,9 @@ def create_dataloader(
 
     Format is auto-detected from ``data_dir``:
       * **.h5 / .hdf5 file** → legacy HDF5 reader selected by ``dataset_cfg.name``
-      * **directory with .parquet shards** → Parquet reader (HF-native)
+      * **directory with .parquet shards** → HF ``datasets``-backed reader
+      * **HF Hub repo ID** → downloaded + cached (or streamed if
+        ``dataset_cfg.streaming`` is True)
       * **directory with .tar shards** → WebDataset reader
 
     Args:
@@ -58,14 +66,25 @@ def create_dataloader(
     """
     data_dir = dataset_cfg.data_dir
     test_dir = dataset_cfg.test_dir or data_dir
+    streaming = getattr(dataset_cfg, "streaming", False)
 
-    if _is_h5(data_dir):
+    if streaming:
+        # Streaming from HF Hub — no download, decode on-the-fly.
+        from mops_pred.datasets.parquet_dataset import StreamingParquetDataset
+
+        train_ds = StreamingParquetDataset(
+            data_dir, train=True, augment=augment, labels=dataset_cfg.labels
+        )
+        test_ds = StreamingParquetDataset(
+            test_dir, train=False, labels=dataset_cfg.labels
+        )
+    elif _is_h5(data_dir):
         # Legacy HDF5 path — use registered dataset class.
         cls = _DATA_REPOSITORY[dataset_cfg.name]
         train_ds = cls(data_dir, train=True, augment=augment, labels=dataset_cfg.labels)
         test_ds = cls(test_dir, train=False, labels=dataset_cfg.labels)
-    elif _is_parquet(data_dir):
-        # Parquet shards (HF-native format).
+    elif _is_parquet(data_dir) or _is_hf_repo(data_dir):
+        # Local Parquet shards or HF Hub repo (downloaded + cached).
         from mops_pred.datasets.parquet_dataset import ParquetDataset
 
         train_ds = ParquetDataset(
@@ -85,19 +104,19 @@ def create_dataloader(
             test_dir, train=False, labels=dataset_cfg.labels
         )
 
-    # IterableDataset (WebDataset) handles shuffling internally.
+    # IterableDataset (WebDataset / streaming) handles shuffling internally.
     is_iterable = isinstance(train_ds, IterableDataset)
 
     train_loader = DataLoader(
         train_ds,
         batch_size=batch_size,
         shuffle=shuffle_train and not is_iterable,
-        num_workers=8,
+        num_workers=0 if streaming else 8,
     )
     test_loader = DataLoader(
         test_ds,
         batch_size=batch_size,
         shuffle=False,
-        num_workers=8,
+        num_workers=0 if streaming else 8,
     )
     return train_loader, test_loader

@@ -19,6 +19,7 @@ class DatasetConfig:
     num_classes: int = 46
     labels: Optional[list[str]] = None
     alias: Optional[str] = None
+    streaming: bool = False
 
 
 @dataclass
