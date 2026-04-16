@@ -56,12 +56,167 @@
             "contentUrl": "https://huggingface.co/datasets/mops-neurips26/mops-casa/tree/refs%2Fconvert%2Fparquet",
             "encodingFormat": "git+https",
             "sha256": "https://github.com/mlcommons/croissant/issues/80"
+        },
+        {
+            "@type": "cr:FileSet",
+            "@id": "parquet-files-for-config-default",
+            "containedIn": {
+                "@id": "repo"
+            },
+            "encodingFormat": "application/x-parquet",
+            "includes": "default/*/*.parquet"
         }
     ],
-    "recordSet": [],
+    "recordSet": [
+        {
+            "@type": "cr:RecordSet",
+            "dataType": "cr:Split",
+            "key": {
+                "@id": "default_splits/split_name"
+            },
+            "@id": "default_splits",
+            "name": "default_splits",
+            "description": "Splits for the default config.",
+            "field": [
+                {
+                    "@type": "cr:Field",
+                    "@id": "default_splits/split_name",
+                    "dataType": "sc:Text"
+                }
+            ],
+            "data": [
+                {
+                    "default_splits/split_name": "train"
+                }
+            ]
+        },
+        {
+            "@type": "cr:RecordSet",
+            "@id": "default",
+            "description": "mops-neurips26/mops-casa - 'default' subset",
+            "field": [
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/split",
+                    "dataType": "sc:Text",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "fileProperty": "fullpath"
+                        },
+                        "transform": {
+                            "regex": "default/(?:partial-)?(train)/.+parquet$"
+                        }
+                    },
+                    "references": {
+                        "field": {
+                            "@id": "default_splits/split_name"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/observation.state",
+                    "dataType": "cr:Float32",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "observation.state"
+                        }
+                    },
+                    "isArray": true,
+                    "arrayShape": "9"
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/action",
+                    "dataType": "cr:Float32",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "action"
+                        }
+                    },
+                    "isArray": true,
+                    "arrayShape": "12"
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/timestamp",
+                    "dataType": "cr:Float32",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "timestamp"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/frame_index",
+                    "dataType": "cr:Int64",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "frame_index"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/episode_index",
+                    "dataType": "cr:Int64",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "episode_index"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/index",
+                    "dataType": "cr:Int64",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "index"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/task_index",
+                    "dataType": "cr:Int64",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "task_index"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
     "conformsTo": "http://mlcommons.org/croissant/1.1",
     "name": "mops-casa",
-    "description": "\n\t\n\t\t\n\t\tMOPS RoboCasa Demos (MOPS-Casa)\n\t\n\nThis dataset contains lerobot format demonstration for RoboCasa's single task human demonstrations.\nIn addition to each camera view, affordance multilabel ground truth masks are provided.\nThis are efficiently stored bitmasks saved in a lossless video format, which can be decoded using the lerobot fork provided with the MOPS-IL imitation learning codebase.\nWhile playing the video files is possible, please note that the differences in bit masks is not… See the full description on the dataset page: https://huggingface.co/datasets/mops-neurips26/mops-casa.",
+    "description": "\n\t\n\t\t\n\t\tMOPS RoboCasa Demos (MOPS-Casa)\n\t\n\nThis is the anonymous Dataset upload for Multi-Objective Photoreal Simulation (MOPS) Dataset [under review].\nThis dataset contains lerobot format demonstration for RoboCasa's single task human demonstrations.\nIn addition to each camera view, affordance multilabel ground truth masks are provided.\nThis are efficiently stored bitmasks saved in a lossless video format, which can be decoded using the lerobot fork provided with the MOPS-IL imitation… See the full description on the dataset page: https://huggingface.co/datasets/mops-neurips26/mops-casa.",
     "alternateName": [
         "mops-neurips26/mops-casa",
         "MOPS Robocasa"
@@ -75,8 +230,15 @@
         "robotics",
         "English",
         "cc-by-4.0",
-        "1K<n<10K",
+        "100K - 1M",
+        "parquet",
+        "Tabular",
+        "Time-series",
         "Video",
+        "Datasets",
+        "pandas",
+        "Polars",
+        "Croissant",
         "🇺🇸egion: US",
         "LeRobot"
     ],

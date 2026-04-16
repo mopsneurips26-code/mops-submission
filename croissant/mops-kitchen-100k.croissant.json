@@ -56,12 +56,246 @@
             "contentUrl": "https://huggingface.co/datasets/mops-neurips26/mops-kitchen-100k/tree/refs%2Fconvert%2Fparquet",
             "encodingFormat": "git+https",
             "sha256": "https://github.com/mlcommons/croissant/issues/80"
+        },
+        {
+            "@type": "cr:FileSet",
+            "@id": "parquet-files-for-config-default",
+            "containedIn": {
+                "@id": "repo"
+            },
+            "encodingFormat": "application/x-parquet",
+            "includes": "default/*/*.parquet"
         }
     ],
-    "recordSet": [],
+    "recordSet": [
+        {
+            "@type": "cr:RecordSet",
+            "dataType": "cr:Split",
+            "key": {
+                "@id": "default_splits/split_name"
+            },
+            "@id": "default_splits",
+            "name": "default_splits",
+            "description": "Splits for the default config.",
+            "field": [
+                {
+                    "@type": "cr:Field",
+                    "@id": "default_splits/split_name",
+                    "dataType": "sc:Text"
+                }
+            ],
+            "data": [
+                {
+                    "default_splits/split_name": "train"
+                },
+                {
+                    "default_splits/split_name": "test"
+                }
+            ]
+        },
+        {
+            "@type": "cr:RecordSet",
+            "@id": "default",
+            "description": "mops-neurips26/mops-kitchen-100k - 'default' subset\n\nAdditional information:\n- 2 splits: train, test",
+            "field": [
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/split",
+                    "dataType": "sc:Text",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "fileProperty": "fullpath"
+                        },
+                        "transform": {
+                            "regex": "default/(?:partial-)?(train|test)/.+parquet$"
+                        }
+                    },
+                    "references": {
+                        "field": {
+                            "@id": "default_splits/split_name"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/image_id",
+                    "dataType": "sc:Text",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "image_id"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/asset_id",
+                    "dataType": "sc:Text",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "asset_id"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/render_params",
+                    "dataType": "sc:Text",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "render_params"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/image",
+                    "dataType": "sc:ImageObject",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "image"
+                        },
+                        "transform": {
+                            "jsonPath": "bytes"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/semantic",
+                    "dataType": "sc:ImageObject",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "semantic"
+                        },
+                        "transform": {
+                            "jsonPath": "bytes"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/instance",
+                    "dataType": "sc:ImageObject",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "instance"
+                        },
+                        "transform": {
+                            "jsonPath": "bytes"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/part",
+                    "dataType": "sc:ImageObject",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "part"
+                        },
+                        "transform": {
+                            "jsonPath": "bytes"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/is_partnet",
+                    "dataType": "sc:ImageObject",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "is_partnet"
+                        },
+                        "transform": {
+                            "jsonPath": "bytes"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/affordance",
+                    "dataType": "sc:Text",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "affordance"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/depth",
+                    "dataType": "sc:Text",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "depth"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/normal",
+                    "dataType": "sc:Text",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "normal"
+                        }
+                    }
+                },
+                {
+                    "@type": "cr:Field",
+                    "@id": "default/bbox",
+                    "dataType": "sc:Text",
+                    "source": {
+                        "fileSet": {
+                            "@id": "parquet-files-for-config-default"
+                        },
+                        "extract": {
+                            "column": "bbox"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
     "conformsTo": "http://mlcommons.org/croissant/1.1",
     "name": "mops-kitchen-100k",
-    "description": "mops-neurips26/mops-kitchen-100k dataset hosted on Hugging Face and contributed by the HF Datasets community",
+    "description": "This is the anonymous Dataset upload for Multi-Objective Photoreal Simulation (MOPS) Dataset [under review]. \nOfficial code available at: https://github.com/mopsneurips26-code/mops-submission\n",
     "alternateName": [
         "mops-neurips26/mops-kitchen-100k"
     ],
@@ -72,6 +306,15 @@
     },
     "keywords": [
         "cc-by-4.0",
+        "100K - 1M",
+        "parquet",
+        "optimized-parquet",
+        "Image",
+        "Text",
+        "Datasets",
+        "Dask",
+        "Polars",
+        "Croissant",
         "🇺🇸egion: US"
     ],
     "license": "https://choosealicense.com/licenses/cc-by-4.0/",
